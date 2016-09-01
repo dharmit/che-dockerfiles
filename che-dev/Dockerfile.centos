@@ -1,0 +1,23 @@
+FROM codenvy/centos_jdk8
+# ENV NODE_VERSION=0.12.9 \
+#     NODE_PATH=/usr/local/lib/node_modules
+
+RUN sudo yum -y update && \
+    sudo yum -y install @"Development Tools" && \
+    sudo yum -y install openssl-devel krb5-devel gcc make ruby ruby-devel rubygems golang && \
+    sudo yum -y install epel-release && \
+    sudo yum -y install npm nodejs && \
+    sudo gem install sass compass && \
+    sudo yum clean all 
+
+EXPOSE 3000 5000 9000
+RUN sudo npm install -g npm@latest
+RUN sudo npm install --unsafe-perm -g gulp bower
+RUN mkdir ~/gopath 
+    # sudo tar -xvf go1.6.2.linux-amd64.tar.gz -C /opt/ && \
+    # rm go1.6.2.linux-amd64.tar.gz
+ENV GOROOT=/usr/bin/go
+ENV GOPATH=/home/user/gopath
+RUN echo "export PATH=$GOROOT/bin:$PATH" >> ~/.bashrc
+
+WORKDIR /home/user
