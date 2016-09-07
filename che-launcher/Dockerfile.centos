@@ -9,16 +9,16 @@
 #   Tyler Jewell  - Improve debug output
 #
 # To build, in this directory:
-#  `docker build -t codenvy/che-launcher .`
+#  `docker build -t registry.centos.org/codenvy/che-launcher -f Dockerfile.centos .`
 #
 # To use it:
-#  `docker run -t -v /var/run/docker.sock:/var/run/docker.sock codenvy/che start`
-#  `docker run -t -v /var/run/docker.sock:/var/run/docker.sock codenvy/che stop`
-#  `docker run -t -v /var/run/docker.sock:/var/run/docker.sock codenvy/che restart`
-#  `docker run -t -v /var/run/docker.sock:/var/run/docker.sock codenvy/che update`
+#  `docker run -t -v /var/run/docker.sock:/var/run/docker.sock registry.centos.org/codenvy/centos-che-launcher start`
+#  `docker run -t -v /var/run/docker.sock:/var/run/docker.sock registry.centos.org/codenvy/centos-che-launcher stop`
+#  `docker run -t -v /var/run/docker.sock:/var/run/docker.sock registry.centos.org/codenvy/centos-che-launcher restart`
+#  `docker run -t -v /var/run/docker.sock:/var/run/docker.sock registry.centos.org/codenvy/centos-che-launcher update`
 #
 
-FROM registry.centos.org/centos/centos
+FROM registry.centos.org/centos/centos:latest
 
 RUN yum -y update && \
     yum -y install \
