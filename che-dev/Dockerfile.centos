@@ -16,7 +16,7 @@
 #              -v "$HOME/.m2:/home/user/.m2"
 #              -v "$PWD":/home/user/che-build
 #              -w /home/user/che-build
-#              registry.centos.org/codenvy/che-dev
+#              registry.centos.org/eclipse/che-dev
 #              mvn -DskipTests=true
 #                  -Dfindbugs.skip=true
 #                  -Dgwt.compiler.localWorkers=2 -T 1C
@@ -32,15 +32,14 @@ FROM codenvy/centos_jdk8
 
 RUN sudo yum -y update && \
     sudo yum -y install @"Development Tools" && \
-    sudo yum -y install openssl-devel krb5-devel gcc make ruby ruby-devel rubygems golang && \
-    sudo yum -y install epel-release && \
-    sudo yum -y install npm nodejs && \
+    sudo yum -y install centos-release-scl openssl-devel krb5-devel gcc make ruby ruby-devel rubygems golang && \
+    sudo yum -y install rh-nodejs4 && \
     sudo gem install sass compass && \
     sudo yum clean all 
 
 EXPOSE 3000 5000 9000
-RUN sudo npm install -g npm@latest
-RUN sudo npm install --unsafe-perm -g gulp bower
+RUN sudo scl enable rh-nodejs4 'npm install -g npm@latest'
+RUN sudo scl enable rh-nodejs4 'npm install --unsafe-perm -g gulp bower'
 RUN mkdir ~/gopath 
     # sudo tar -xvf go1.6.2.linux-amd64.tar.gz -C /opt/ && \
     # rm go1.6.2.linux-amd64.tar.gz
