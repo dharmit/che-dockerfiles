@@ -4,6 +4,10 @@
 # which accompanies this distribution, and is available at
 # http://www.eclipse.org/legal/epl-v10.html
 
+# Upstream point of contact: Mario Loriedo <mloriedo@redhat.com>
+# Downstream POC: Clement Escoffier <cescoffi@redhat.com>
+# QE contact: Marian Labuda <mlabuda@redhat.com>
+
 FROM registry.centos.org/centos/centos
 
 MAINTAINER Clement Escoffier
